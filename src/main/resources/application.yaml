@@ -1,0 +1,20 @@
+# Configure the SmallRye Kafka connector
+kafka
+  bootstrap
+    servers: "localhost:9092"
+
+mp
+  messaging
+# Configure the Kafka sink (we write to it)
+    outgoing
+      generated-price
+        connector: smallrye-kafka
+        topic: prices
+        value
+          serializer: org.apache.kafka.common.serialization.IntegerSerializer
+# Configure the Kafka source (we read from it)
+    incoming
+      prices
+        connector: smallrye-kafka
+        value
+          deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
