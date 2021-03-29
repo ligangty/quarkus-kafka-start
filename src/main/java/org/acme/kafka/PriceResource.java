@@ -1,9 +1,8 @@
 package org.acme.kafka;
 
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.reactivestreams.Publisher;
-import org.eclipse.microprofile.reactive.messaging.Emitter;
-import org.eclipse.microprofile.reactive.messaging.Outgoing;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -22,7 +21,7 @@ public class PriceResource {
     Publisher<Double> prices; 
 
     @Inject 
-    @Outgoing("create-price") 
+    @Channel("create-price")
     Emitter<Double> priceEmitter;
 
     @POST
