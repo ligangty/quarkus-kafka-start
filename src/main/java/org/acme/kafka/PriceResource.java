@@ -21,7 +21,7 @@ public class PriceResource {
     Publisher<Double> prices; 
 
     @Inject 
-    @Channel("prices") 
+    @Outgoing("create-price") 
     Emitter<Double> priceEmitter;
 
     @POST

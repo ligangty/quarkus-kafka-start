@@ -12,9 +12,15 @@ mp
         topic: prices
         value
           serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      create-price
+        connector: smallrye-kafka
+        topic: prices
+        value
+          serializer: org.apache.kafka.common.serialization.IntegerSerializer
 # Configure the Kafka source (we read from it)
     incoming
       prices
         connector: smallrye-kafka
         value
           deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+          
