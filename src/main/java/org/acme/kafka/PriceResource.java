@@ -20,15 +20,15 @@ public class PriceResource {
     @Channel("my-data-stream") 
     Publisher<Double> prices; 
 
-    @Inject 
-    @Channel("create-price")
-    Emitter<Double> priceEmitter;
+    // @Inject 
+    // @Channel("prices") 
+    // Emitter<Double> priceEmitter;
 
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    public void addPrice(Double price) {
-        priceEmitter.send(price);
-    }
+    // @POST
+    // @Consumes(MediaType.TEXT_PLAIN)
+    // public void addPrice(Double price) {
+    //     priceEmitter.send(price);
+    // }
 
     @GET
     @Path("/stream")
@@ -38,9 +38,4 @@ public class PriceResource {
         return prices;
     }
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
-    }
 }

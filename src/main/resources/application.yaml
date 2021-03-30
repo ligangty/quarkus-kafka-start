@@ -1,26 +1,25 @@
+quarkus:
+  http:
+    port: 8080
+
 # Configure the SmallRye Kafka connector
-kafka
-  bootstrap
+kafka:
+  bootstrap:
     servers: "localhost:9092"
 
-mp
-  messaging
-# Configure the Kafka sink (we write to it)
-    outgoing
-      generated-price
-        connector: smallrye-kafka
-        topic: prices
-        value
-          serializer: org.apache.kafka.common.serialization.IntegerSerializer
-      create-price
-        connector: smallrye-kafka
-        topic: prices
-        value
-          serializer: org.apache.kafka.common.serialization.IntegerSerializer
-# Configure the Kafka source (we read from it)
-    incoming
-      prices
-        connector: smallrye-kafka
-        value
-          deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
-          
+mp:
+  messaging:
+    # Configure the Kafka source (we read from it)
+    incoming:
+      prices:
+        connector: "smallrye-kafka"
+        topic: "prices"
+        value:
+          deserializer: "org.apache.kafka.common.serialization.IntegerDeserializer"
+    # Configure the Kafka sink (we write to it)      
+    outgoing:
+      generated-price:
+        connector: "smallrye-kafka"
+        topic: "prices"
+        value:
+          serializer: "org.apache.kafka.common.serialization.IntegerSerializer"
